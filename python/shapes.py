@@ -1,5 +1,4 @@
-# Task 2: Shapes & Polymorphism. See ../python.md for the full task.
-# Replace this comment with a one-sentence description of your approach.
+# Implements Shape, Circle, and Rectangle classes using polymorphism, then stores them in a mixed list to calculate and print individual and total areas.
 
 import math
 
@@ -8,17 +7,40 @@ class Shape:
     def area(self):
         raise NotImplementedError("subclasses must implement area()")
 
-    # TODO: add a __repr__ so printing a shape shows its type and area.
+    def __repr__(self):
+        return f"{type(self).__name__} - Area: {self.area()}"
 
 
-# TODO: class Circle(Shape) storing radius r, overriding area() -> pi * r**2
-# TODO: class Rectangle(Shape) storing w, h, overriding area() -> w * h
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return math.pi * self.r ** 2
+
+
+class Rectangle(Shape):
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
+
+    def area(self):
+        return self.w * self.h
 
 
 def main():
-    # TODO: make a mixed list (>=2 circles, >=2 rectangles), then use a single
-    # loop to print each shape and accumulate the total area; print the total.
-    ...
+    c1, c2 = Circle(2), Circle(4)
+    r1, r2 = Rectangle(2, 3), Rectangle(4, 5)
+
+    shapes = [c1, c2, r1, r2]
+
+    total_area = 0
+
+    for shape in shapes:
+        print(shape)
+        total_area += shape.area()
+
+    print(f"Total Area: {total_area}")
 
 
 if __name__ == "__main__":

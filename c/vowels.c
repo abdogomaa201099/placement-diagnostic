@@ -1,12 +1,28 @@
-// C-1: Count the vowels in a word, case-insensitively. See ../c.md for the full task.
-// Replace this comment with a one-sentence description of your approach,
-// and note one sample run (input word -> count printed).
+// Reads a word, checks each character against the vowels case-insensitively, counts the matches, and prints the total (example: "Education" -> 5).
 
 #include <stdio.h>
+#include <ctype.h>
 
 int main(void)
 {
-    // TODO: read a single word from standard input and print how many vowels
-    // it contains (a, e, i, o, u in either case).
+    char word[1000];
+    int count = 0;
+
+    scanf("%999s", word);
+
+    for (int i = 0; word[i] != '\0'; i++) {
+        char c = word[i];
+
+        c = tolower(c);
+
+		if (c == 'a' || c == 'e' || c == 'i' ||
+		    c == 'o' || c == 'u')
+		{
+		    count++;
+		}
+    }
+
+    printf("%d\n", count);
+
     return 0;
 }
